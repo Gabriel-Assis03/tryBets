@@ -12,6 +12,11 @@ public class TeamRepository : ITeamRepository
 
     public IEnumerable<TeamDTOResponse> Get()
     {
-        throw new NotImplementedException();
+        var teams = _context.Teams.Select(t => new TeamDTOResponse
+            {
+                TeamId = t.TeamId,
+                TeamName = t.TeamName
+            });
+        return teams.ToList();
     }
 }
